@@ -1,0 +1,51 @@
+<!-- Navbar Bootstrap: menu kiri + info user kanan. Dimuat via fetch di tiap halaman. -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <!-- Brand ke halaman utama (bisa diarahkan ke dashboard.html) -->
+    <a class="navbar-brand" href="dashboard.html">
+      <img src="assets/logo-ut.png" alt="Universitas Terbuka" height="24" class="me-2 align-text-top">
+      Sistem Bahan Ajar
+    </a>
+
+    <!-- Toggler untuk mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Kumpulan menu -->
+    <div id="mainNav" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Link ke halaman stok (Informasi Bahan Ajar) -->
+        <li class="nav-item"><a class="nav-link" href="stok.html">Informasi Bahan Ajar</a></li>
+        <!-- Link ke halaman tracking -->
+        <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking Pengiriman</a></li>
+        <!-- Dropdown laporan -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Laporan Monitoring</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Progress DO</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Bahan Ajar</a></li>
+          </ul>
+        </li>
+        <!-- Dropdown rekap -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Rekap Bahan Ajar</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Rekap Bulanan</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Rekap Tahunan</a></li>
+          </ul>
+        </li>
+        <!-- Placeholder histori -->
+        <li class="nav-item"><a class="nav-link" href="#">Histori Transaksi</a></li>
+      </ul>
+
+      <!-- Nama user diisi dari session, tombol logout panggil window.logout() -->
+      <div class="d-flex align-items-center gap-2 text-white">
+        <span id="userName" class="small">Admin User</span>
+        <button class="btn btn-outline-light btn-sm" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
