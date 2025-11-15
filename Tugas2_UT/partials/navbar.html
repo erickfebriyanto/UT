@@ -1,0 +1,111 @@
+<!-- Navbar Bootstrap: menu kiri + info user kanan. Dimuat via fetch di tiap halaman. -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <!-- Container: batas lebar konten navbar -->
+  <div class="container">
+    
+    <!-- ===== BRAND (LOGO + NAMA SISTEM) ===== -->
+    <!-- href="dashboard.html": klik logo kembali ke dashboard -->
+    <a class="navbar-brand" href="dashboard.html">
+      <!-- Logo UT: height 24px agar proporsional di navbar -->
+      <!-- me-2: margin-end 8px (jarak logo-teks) -->
+      <!-- align-text-top: sejajarkan dengan teks -->
+      <img src="assets/logo-UT.png" alt="Universitas Terbuka" height="24" class="me-2 align-text-top">
+      Sistem Bahan Ajar
+    </a>
+
+    <!-- ===== TOGGLER BUTTON (MOBILE) ===== -->
+    <!-- Muncul di layar kecil (<992px) untuk collapse/expand menu -->
+    <!-- data-bs-toggle="collapse": trigger Bootstrap collapse -->
+    <!-- data-bs-target="#mainNav": target collapse adalah div#mainNav -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- ===== MENU NAVIGASI (COLLAPSIBLE) ===== -->
+    <!-- collapse navbar-collapse: default collapsed di mobile -->
+    <div id="mainNav" class="collapse navbar-collapse">
+      
+      <!-- ===== MENU KIRI ===== -->
+      <!-- me-auto: margin-end auto (dorong konten berikutnya ke kanan) -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <!-- Menu 1: Informasi Bahan Ajar → stok.html -->
+        <li class="nav-item">
+          <a class="nav-link" href="stok.html">Informasi Bahan Ajar</a>
+        </li>
+        
+        <!-- Menu 2: Tracking Pengiriman → tracking.html -->
+        <li class="nav-item">
+          <a class="nav-link" href="tracking.html">Tracking Pengiriman</a>
+        </li>
+        
+        <!-- ===== DROPDOWN 1: LAPORAN MONITORING ===== -->
+        <li class="nav-item dropdown">
+          <!-- Trigger dropdown: data-bs-toggle="dropdown" -->
+          <!-- href="#": prevent default link behavior -->
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            Laporan Monitoring
+          </a>
+          <!-- Dropdown menu: muncul saat hover/click -->
+          <ul class="dropdown-menu">
+            <!-- Item dropdown: Progress DO (belum ada halaman) -->
+            <li><a class="dropdown-item" href="#">Progress DO</a></li>
+            <!-- Divider: garis pemisah antar item -->
+            <li><hr class="dropdown-divider"></li>
+            <!-- Item dropdown: Bahan Ajar (belum ada halaman) -->
+            <li><a class="dropdown-item" href="#">Bahan Ajar</a></li>
+          </ul>
+        </li>
+        
+        <!-- ===== DROPDOWN 2: REKAP BAHAN AJAR ===== -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            Rekap Bahan Ajar
+          </a>
+          <ul class="dropdown-menu">
+            <!-- Item: Rekap Bulanan (belum ada halaman) -->
+            <li><a class="dropdown-item" href="#">Rekap Bulanan</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <!-- Item: Rekap Tahunan (belum ada halaman) -->
+            <li><a class="dropdown-item" href="#">Rekap Tahunan</a></li>
+          </ul>
+        </li>
+        
+        <!-- Menu 5: Histori Transaksi (placeholder, belum ada halaman) -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">Histori Transaksi</a>
+        </li>
+      </ul>
+
+      <!-- ===== USER INFO & LOGOUT (KANAN) ===== -->
+      <!-- d-flex: flexbox container -->
+      <!-- align-items-center: vertikal center -->
+      <!-- gap-2: jarak 8px antar item -->
+      <!-- text-white: teks putih untuk kontras dengan bg-primary -->
+      <div class="d-flex align-items-center gap-2 text-white">
+        
+        <!-- Nama User: diupdate via JavaScript setelah navbar dimuat -->
+        <!-- id="userName": untuk diakses via document.getElementById() -->
+        <!-- small: ukuran font lebih kecil -->
+        <span id="userName" class="small">Admin User</span>
+        
+        <!-- Tombol Logout -->
+        <!-- btn-outline-light: outline putih untuk navbar dark -->
+        <!-- btn-sm: ukuran kecil -->
+        <!-- onclick="logout()": panggil fungsi logout() dari halaman parent -->
+        <!--    Fungsi logout() didefinisikan di dashboard/stok/tracking.html -->
+        <!--    dan di-expose ke global scope (window.logout) -->
+        <button class="btn btn-outline-light btn-sm" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- 
+CATATAN PENTING:
+1. Navbar ini dimuat dinamis via fetch() di setiap halaman (dashboard, stok, tracking)
+2. Setelah dimuat, nama user diupdate dengan: document.getElementById('userName').textContent = currentUser.nama
+3. Fungsi logout() harus ada di halaman parent dan di-expose ke window: window.logout = logout
+4. Bootstrap JS diperlukan untuk dropdown dan toggler berfungsi (sudah di-include di setiap halaman)
+5. Link dengan href="#" adalah placeholder untuk fitur yang belum diimplementasi
+-->

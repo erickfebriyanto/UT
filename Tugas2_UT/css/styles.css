@@ -1,0 +1,9 @@
+/* Kustom CSS non-CDN (Bootstrap tetap via CDN)
+   - .max-420: membatasi lebar container login (dipakai di index.html)
+   - .cover-44: ukuran gambar kecil untuk cover stok (dipakai di stok.html) */
+
+/* Helper umum */
+.max-420 { max-width: 420px; }
+
+/* Gambar cover kecil (stok) */
+.cover-44 { width:44px; height:44px; object-fit:cover; border-radius:.25rem; }

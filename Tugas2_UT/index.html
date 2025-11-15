@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Login</title>
+    
+    <!-- Bootstrap 5: Framework CSS untuk styling responsif -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- styles.css: CSS kustom untuk helper class (.max-420) -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<!-- bg-primary: warna background biru
+     min-vh-100: tinggi minimum 100% viewport
+     d-flex, align-items-center, justify-content-center: pusatkan konten secara vertikal dan horizontal -->
+<body class="bg-primary min-vh-100 d-flex align-items-center justify-content-center">
+    
+    <!-- Container dengan lebar maksimal 420px (dari styles.css) agar form tidak terlalu lebar -->
+    <div class="container max-420">
+        
+        <!-- Card Bootstrap: kotak putih dengan shadow untuk form login -->
+        <div class="card shadow-sm">
+            <div class="card-body">
+                
+                <!-- Logo UT: branding dan identitas institusi -->
+                <div class="text-center mb-3">
+                    <img src="assets/logo-UT.png" alt="Universitas Terbuka" height="56">
+                </div>
+                
+                <!-- Judul halaman -->
+                <h2 class="h4 text-center mb-3">Login</h2>
+                
+                <!-- Form login: id="loginForm" untuk diakses JavaScript -->
+                <form id="loginForm">
+                    
+                    <!-- Input Email: required memastikan field tidak kosong -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="Masukkan email" class="form-control">
+                    </div>
+                    
+                    <!-- Input Password: type="password" menyembunyikan karakter -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" required 
+                               placeholder="Masukkan password" class="form-control">
+                    </div>
+                    
+                    <!-- Tombol Submit: w-100 membuat tombol full width -->
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+                
+                <!-- Link tambahan (hanya tampilan, tidak fungsional) -->
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="#" class="link-light text-decoration-none">Lupa Password?</a>
+                    <a href="#" class="link-light text-decoration-none">Daftar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import data user dari file eksternal -->
+    <script src="js/data.js"></script>
+    <script>
+        // ===== JAVASCRIPT LOGIN HANDLER =====
+        
+        // 1. Ambil referensi form menggunakan getElementById
+        const f = document.getElementById('loginForm');
+        
+        // 2. Pasang event listener untuk event 'submit'
+        f.addEventListener('submit', e => {
+            // 3. Cegah reload halaman default saat form disubmit
+            e.preventDefault();
+            
+            // 4. Ambil nilai input email dan password dari form
+            //    .value: mengambil nilai dari input
+            //    .trim(): menghapus spasi di awal/akhir
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            
+            // 5. Cari user di array dataPengguna (dari data.js)
+            //    .find(): mencari item pertama yang cocok dengan kondisi
+            const user = (dataPengguna || []).find(u => 
+                u.email === email && u.password === password
+            );
+            
+            // 6. Cek hasil validasi
+            if (user) {
+                // User ditemukan: Simpan data user ke sessionStorage
+                // JSON.stringify: konversi objek ke string
+                // sessionStorage: penyimpanan sementara di browser (hilang saat tab ditutup)
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+                
+                // Redirect ke halaman dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                // User tidak ditemukan: tampilkan pesan error
+                alert('Email atau password salah!');
+            }
+        });
+    </script>
+</body>
+</html>
